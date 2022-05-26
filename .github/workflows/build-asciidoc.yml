@@ -8,7 +8,7 @@ on:
 jobs:
   adoc_build:
     runs-on: ubuntu-18.04
-    name: asciidoctor -D docs --backend=html5 -o index.html -a toc2 docs/index.adoc 
+    name: Asciidoctoring the docs to pretty HTML! 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -16,12 +16,10 @@ jobs:
       id: adocbuild
       uses: tonynv/asciidoctor-action@master
       with:
-          program: "asciidoctor -D docs --backend=html5 -o index.html docs/index.adoc"
-    - name: Print execution time
-      run: echo "Time ${{ steps.adocbuild.outputs.time }}"
+          program: "asciidoctor -D docs -a stylesheet=style.css --backend=html5 -o index.html index.adoc"
     - name: Deploy docs to ghpages
       uses: peaceiris/actions-gh-pages@v3
       with:
         deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         publish_branch: gh-pages
-        publish_dir: ./
+        publish_dir: ./docs/
