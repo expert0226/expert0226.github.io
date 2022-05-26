@@ -1,4 +1,8 @@
-* 로컬 터미널에서 아래 명령 수행 후
+* 로컬 터미널에서 아래 명령 수행
+
+[source, shell]
+----
 asciidoctor -a stylesheet=style.css --backend=html5 -o index.html docs/index.adoc
+----
 
 * git add, commit, push
